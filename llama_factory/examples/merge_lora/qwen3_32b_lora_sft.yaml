@@ -1,0 +1,13 @@
+### Note: DO NOT use quantized model or quantization_bit when merging lora adapters
+
+### model
+model_name_or_path: /mnt-nfsdata/model_base/Qwen3-32B
+adapter_name_or_path: /gemini/data-1/margin_sft/llama_factory/saves_new/math/qwen3_32b/lora/sft
+template: qwen3
+trust_remote_code: true
+
+### export
+export_dir: /mnt-nfsdata/gongxuan/save_weights/qwen3_32b_merged/math
+export_size: 5
+export_device: cpu  # choices: [cpu, auto]
+export_legacy_format: false

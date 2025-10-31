@@ -1,0 +1,19 @@
+### model
+model_name_or_path: /gemini/data-3/model_base/Meta-Llama-3.1-8B
+adapter_name_or_path: saves/llama3-8b/lora/sft
+trust_remote_code: true
+
+### method
+finetuning_type: lora
+
+### dataset
+task: strategyqa_eval  # choices: [mmlu_test, ceval_validation, cmmlu_test]
+template: fewshot
+lang: en
+n_shot: 0
+
+### output
+save_dir: saves/llama3-8b/lora/eval
+
+### eval
+batch_size: 4
