@@ -23,6 +23,7 @@ The official repository for the paper "VCORE: Variance-Controlled Optimization-b
 ### Prepare Code and Data
 ```bash
 git clone https://github.com/coder-gx/VCORE.git
+cd VCORE
 ```
 Download the training data form huggingface. [![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Data-yellow)](https://huggingface.co/datasets/XanderGong/VCORE-data) 
 
@@ -30,14 +31,25 @@ change the data path in [data_info.json](./llama_factory/data/dataset_info.json)
 
 ### Environment Setup
 ```bash
-pip install requirement.txt
+conda create -n vcore python==3.10
+conda activate vcore
+pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu128
+pip install -r requirements.txt 
 pip install -e ./llama_factory
 pip install -e ./transformers-4.52.4
 ```
 ### Start training
-There are multi training command examples in [train_multi.sh](train_multi.sh), and you can change the hyperparameters to run the different training settings.
+We have two kinds of methods to run VCORE, multi-process one and single-process one.
+#### 1. single process
+There is training command examples in [train_single.sh](./llama_factory/train_single.sh), and you can change the hyperparameters to run the different training settings.
 ```bash
-bash train_multi.sh
+bash train_multi_single.sh
+```
+#### 2. multi process
+There is training command examples in [train_multi_main.sh](./llama_factory/train_multi_main.sh) and [train_multi_branch.sh](./llama_factory/train_multi_branch.sh), and you can change the hyperparameters to run the different training settings.
+```bash
+bash train_multi_main.sh
+bash train_multi_branch.sh # run at a different shell
 ```
 
 

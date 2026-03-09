@@ -54,8 +54,6 @@ def run_sft(
     if getattr(model, "is_quantized", False) and not training_args.do_train:
         setattr(model, "_hf_peft_config_loaded", True)  # hack here: make model compatible with prediction
     
-    # p123=getattr(model.config, "_attn_implementation", None)
-    # print(f"YYYYYYYYYYYYYYUUUUUUUU: {p123}")
     
 
     data_collator = SFTDataCollatorWith4DAttentionMask(
@@ -84,12 +82,14 @@ def run_sft(
 
     # Initialize our Trainer
     use_dft=training_args.use_dft if hasattr(training_args, 'use_dft') else False
-    use_ours=training_args.use_ours if hasattr(training_args, 'use_ours') else False
-    ours_pre_ga=training_args.ours_pre_ga if hasattr(training_args, 'ours_pre_ga') else 8
-    ours_temperature=training_args.ours_temperature if hasattr(training_args, 'ours_temperature') else 1.0
-    ours_anchor_steps=training_args.ours_anchor_steps if hasattr(training_args, 'ours_anchor_steps') else 1
-    ours_store_mode=training_args.ours_store_mode if hasattr(training_args, 'ours_store_mode') else "module"
-    epsilon=training_args.epsilon if hasattr(training_args, 'epsilon') else 2e-5
+    use_vcore=training_args.use_vcore if hasattr(training_args, 'use_vcore') else False
+    main_or_branch=training_args.main_or_branch if hasattr(training_args, 'main_or_branch') else 'main'
+    vcore_single_process=training_args.vcore_single_process if hasattr(training_args, 'vcore_single_process') else True
+    vcore_pre_ga=training_args.vcore_pre_ga if hasattr(training_args, 'vcore_pre_ga') else 8
+    vcore_temperature=training_args.vcore_temperature if hasattr(training_args, 'vcore_temperature') else 1.0
+    vcore_anchor_steps=training_args.vcore_anchor_steps if hasattr(training_args, 'vcore_anchor_steps') else 1
+    vcore_epsilon=training_args.vcore_epsilon if hasattr(training_args, 'vcore_epsilon') else 2e-5
+    output_dir=training_args.output_dir if hasattr(training_args, 'output_dir') else "./output"
 
    
     trainer = CustomSeq2SeqTrainer(
@@ -100,12 +100,14 @@ def run_sft(
         callbacks=callbacks,
         gen_kwargs=gen_kwargs,
         use_dft=use_dft,
-        use_ours=use_ours,
-        ours_pre_ga=ours_pre_ga,
-        ours_temperature=ours_temperature,
-        ours_anchor_steps=ours_anchor_steps,
-        ours_store_mode=ours_store_mode,
-        epsilon=epsilon,
+        use_vcore=use_vcore,
+        main_or_branch=main_or_branch,
+        vcore_single_process=vcore_single_process,
+        vcore_pre_ga=vcore_pre_ga,
+        vcore_temperature=vcore_temperature,
+        vcore_anchor_steps=vcore_anchor_steps,
+        vcore_epsilon=vcore_epsilon,
+        output_dir=output_dir,
         **dataset_module,
         **tokenizer_module,
         **metric_module,

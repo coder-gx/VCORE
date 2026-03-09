@@ -1,28 +1,28 @@
 {
   
 "code_sft":{
-  "file_name": "/gemini/data-2/OpenReasoning/code_train_format.json",
+  "file_name": "/home/data-1/gongxuan/OpenCodeReasoning/code_train_format.json",
   "columns": {
     "prompt": "question",
     "response": "cot"
   }
 }, 
 "code_sft_llama":{
-  "file_name": "/gemini/data-2/OpenReasoning/code_train_format_llama.json",
+  "file_name": "/home/data-1/gongxuan/OpenCodeReasoning/code_train_format_llama.json",
   "columns": {
     "prompt": "question",
     "response": "cot"
   }
 }, 
 "math_sft_llama":{
-  "file_name": "/gemini/data-2/OpenReasoning/math_train_format_llama.json",
+  "file_name": "/home/data-1/gongxuan/OpenMathReasoning/math_train_format_llama.json",
   "columns": {
     "prompt": "question",
     "response": "cot"
   }
 },  
 "math_sft":{
-  "file_name": "/gemini/data-2/OpenReasoning/math_train_format.json",
+  "file_name": "/home/data-1/gongxuan/OpenMathReasoning/math_train_format.json",
   "columns": {
     "prompt": "question",
     "response": "cot"

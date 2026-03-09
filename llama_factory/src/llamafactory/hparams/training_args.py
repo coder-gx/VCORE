@@ -58,31 +58,34 @@ class RayArguments:
         default=False,
         metadata={"help": "DFT loss. Default is False."},
     )
-    use_ours: Optional[bool] = field(
+    use_vcore: Optional[bool] = field(
         default=False,
-        metadata={"help": "Our loss. Default is False."},
+        metadata={"help": "VCORE loss. Default is False."},
     )
-    ours_pre_ga: Optional[int] = field(
+    main_or_branch: Optional[str] = field(
+        default="main",
+        metadata={"help": "main or branch process for VCORE. Default is main."},
+    )
+    vcore_pre_ga: Optional[int] = field(
         default=8,
-        metadata={"help": "our pre gradient accumulation steps. Default is 8."},
+        metadata={"help": "pre gradient accumulation steps for VCORE. Default is 8."},
     )
-    ours_temperature: Optional[float] = field(
+    vcore_temperature: Optional[float] = field(
         default=1.0,
-        metadata={"help": "our temperature. Default is 1."},
+        metadata={"help": "temperature for VCORE. Default is 1."},
     )
-    ours_anchor_steps: Optional[int] = field(
+    vcore_anchor_steps: Optional[int] = field(
         default=1,
         metadata={"help": "anchor steps to  cal loss. Default is 1."},
     )
-    ours_store_mode: Optional[str] = field(
-        default="module",
-        metadata={"help": "anchor model store mode, state_dict to CPU, module to GPU. Default is module."},
-    )
-    epsilon: Optional[float] = field(
+    vcore_epsilon: Optional[float] = field(
         default=2e-5,
-        metadata={"help": "anchor model store mode, state_dict to CPU, module to GPU. Default is module."},
+        metadata={"help": "epsilon for VCORE"},
     )
-   
+    vcore_single_process: Optional[bool] = field(
+        default=True,
+        metadata={"help": "Whether to run VCORE in single process mode. Default is False."},
+    )
 
 
     def __post_init__(self):

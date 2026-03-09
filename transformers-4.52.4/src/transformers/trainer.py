@@ -3792,7 +3792,7 @@ class Trainer:
 
             return loss.detach()
 
-    def compute_loss(self, model, inputs, use_dft,use_ours, ours_temperature,return_per_token_loss=False, return_outputs=False, num_items_in_batch=None,loss_a=None,loss_b=None,cur_lr=None):
+    def compute_loss(self, model, inputs, use_dft=False,use_vcore=False, vcore_temperature=1.0,return_per_token_loss=False, return_outputs=False, num_items_in_batch=None,pre_loss=None,probing_lr=None):
         """
         How the loss is computed by Trainer. By default, all models return the loss in the first element.
 
@@ -3808,12 +3808,11 @@ class Trainer:
             if num_items_in_batch is not None:
                 loss_kwargs["num_items_in_batch"] = num_items_in_batch
             loss_kwargs["use_dft"] = use_dft
-            loss_kwargs["use_ours"] = use_ours
-            loss_kwargs["loss_a"] =loss_a
-            loss_kwargs["loss_b"] =loss_b
+            loss_kwargs["use_vcore"] = use_vcore
+            loss_kwargs["pre_loss"] =pre_loss
             loss_kwargs["loss_mask"] =inputs.get("loss_mask", None)
-            loss_kwargs["cur_lr"] =cur_lr
-            loss_kwargs["ours_temperature"] = ours_temperature
+            loss_kwargs["probing_lr"] =probing_lr
+            loss_kwargs["vcore_temperature"] = vcore_temperature
             loss_kwargs["return_per_token_loss"] = return_per_token_loss
             inputs = {**inputs, **loss_kwargs}
         outputs = model(**inputs)
