@@ -6,12 +6,13 @@ The official repository for the paper "VCORE: Variance-Controlled Optimization-b
 </p>
 
 ## 🔥 News
-
+- [x] Our paper has been accepted to ACL 2026 Main Conference  6/4/2026
+- [ ] Evaluation code and all scripts
 - [x] Basic training code based on [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) frmework uploaded  
 - [x] Preprint Paper. [![ArXiv Link](https://img.shields.io/badge/Arxiv%20Link-Paper-red)](https://arxiv.org/abs/2510.27462).
 - [x] Training dataset ([![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Data-yellow)](https://huggingface.co/datasets/XanderGong/VCORE-data)) in huggingface
  format uploaded
-- [ ] Evaluation code and all scripts
+
 
   
 ## 🌟 Key Highlights
